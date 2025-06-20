@@ -50,9 +50,9 @@ Building the **full platform** to sell and manage digital products
 I'm building this project in public as part of my indie hacker journey 
 Your feedback is welcome! Feel free to connect, suggest ideas, or collaborate.
 
-* Twitter: \[https://x.com/Annu66126617]
-* LinkedIn: \[https://www.linkedin.com/in/annu-kumari-540337237/]
-* Projexio(Portfolio): \[https://projexio-annu-kumari.vercel.app/]
+* Twitter: \[ https://x.com/Annu66126617 ]
+* LinkedIn: \[ https://www.linkedin.com/in/annu-kumari-540337237/ ]
+* Projexio(Portfolio): \[ https://projexio-annu-kumari.vercel.app/ ]
 ---
 
 ## 📂 Setup Instructions
