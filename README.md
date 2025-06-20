@@ -59,7 +59,7 @@ Your feedback is welcome! Feel free to connect, suggest ideas, or collaborate.
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/pixelcraft-studio.git
+git clone https://github.com/annuk123/pixelcraft-studio.git
 
 # Navigate into the project
 cd pixelcraft-studio
