@@ -43,6 +43,32 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+@keyframes gradientWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient-bg {
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #0a0a23, #1e3c72, #2a5298);
+  background-size: 600% 600%;
+  animation: gradientWave 20s ease-in-out infinite;
+  transition: background 0.5s ease;
+}
+
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

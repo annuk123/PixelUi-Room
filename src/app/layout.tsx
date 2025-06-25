@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PixelCraft Studio",
+  title: "PixelUI Room",
   description: "Where Design Meets Development",
 };
 

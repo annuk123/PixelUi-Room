@@ -24,10 +24,6 @@ export default function Loader({
 
       tl.to(topPanelRef.current, { yPercent: -100, duration: 1, ease: 'power4.inOut' }, 0)
         .to(bottomPanelRef.current, { yPercent: 100, duration: 1, ease: 'power4.inOut' }, 0);
-
-      return () => {
-        tl?.kill();
-      };
     }, 2000);
 
     return () => clearTimeout(timeout);
