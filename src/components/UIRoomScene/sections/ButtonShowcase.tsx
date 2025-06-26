@@ -138,7 +138,7 @@ export default function ButtonShowcase({ selectedCategory }: Props) {
         Buttons
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 bg-black/30 p-8 rounded-lg shadow-lg backdrop-blur-md border border-cyan-800">
         {filteredButtons.map(({ label, className }, index) => {
           const tailwindCode = `className="${className}"`;
           return (

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { SectionCard } from './SectionCard'; // card for each landing page preview
+import { SectionCard } from './SectionCard';
 import { landingPageData } from '@/components/LandingPages/landingPageData';
 
 const categories = ['All', 'SaaS', 'Enterprise', 'Cybersecurity', 'Portfolio', 'Education'];

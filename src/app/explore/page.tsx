@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';;
 import RandomParticles from '@/components/HeroSection/RandomParticles/RandomParticles';
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+import FeedbackSection from '@/components/FeedBackComponenet/Feedback';
 
 const sections = [
   { href: '/explore/uicomponents', title: 'UI Components', description: 'Buttons, Inputs, Tabs, Cards...' },
@@ -14,10 +17,13 @@ const sections = [
 ];
 
 export default function ExplorePage() {
+
+    const feedback = useQuery(api.feedback.getAllFeedback);
   return (
-    <div className="relative w-full h-screen overflow-hidden bg flex items-center justify-center animated-gradient-bg">
+    <div className="relative w-full min-h-screen overflow-x-hidden bg animated-gradient-bg">
+      {/* Background Canvas */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Canvas
-          className="absolute inset-0 z-0 pointer-events-none"
           camera={{ position: [0, 0, 10], fov: 75 }}
           gl={{ alpha: true }}
         >
@@ -25,8 +31,10 @@ export default function ExplorePage() {
             <RandomParticles />
           </Suspense>
         </Canvas>
+      </div>
 
-      <main className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4 text-center bg-black/30 backdrop-blur">
+      {/* Scrollable Main Content */}
+      <main className="relative z-10 px-4 pt-24 pb-32 bg-black/30 backdrop-blur text-white min-h-screen">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -80,6 +88,17 @@ export default function ExplorePage() {
             </motion.button>
           </Link>
         </div>
+
+        {/* Feedback */}
+
+        <FeedbackSection
+  feedback={
+    (feedback ?? []).map(fb => ({
+      ...fb,
+      createdAt: String(fb.createdAt),
+    }))
+  }
+/>
       </main>
     </div>
   );

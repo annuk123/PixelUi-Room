@@ -11,6 +11,7 @@ export default function Home() {
   const [stage, setStage] = useState<'loading' | 'hero'>('loading');
   const router = useRouter();
 
+
   const handleLoadingComplete = () => {
     window.scrollTo(0, 0);
     setStage('hero');
@@ -50,6 +51,8 @@ export default function Home() {
           </motion.main>
         )}
       </AnimatePresence>
+
+
     </div>
   );
 }

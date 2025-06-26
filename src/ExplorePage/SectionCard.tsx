@@ -10,7 +10,7 @@ type SectionCardProps = {
 export function SectionCard({ title, image, liveUrl, codeUrl, category }: SectionCardProps) {
   return (
     <div className="bg-[#141436] border border-cyan-700/50 rounded-xl overflow-hidden shadow-md">
-      <Image src={image} alt={title} className="w-full h-48 object-cover" />
+      <Image width={50} height={50} src={image} alt={title} className="w-full h-48 object-cover" />
       <div className="p-4 space-y-2">
         <h3 className="text-xl font-semibold text-white">{title}</h3>
         <p className="text-sm text-cyan-400">{category}</p>
@@ -46,7 +46,7 @@ export function SvgCard({ title, preview, svgCode, category }: SvgCardProps) {
 
   return (
     <div className="bg-[#141436] border border-cyan-700/50 rounded-xl overflow-hidden shadow-md p-4 space-y-3">
-      <Image src={preview} alt={title} className="w-full h-48 object-contain bg-white rounded" />
+      <Image src={preview} width={50} height={50} alt={title} className="w-full h-48 object-contain bg-white rounded" />
       <h3 className="text-lg font-semibold text-white">{title}</h3>
       <p className="text-xs text-cyan-400">{category}</p>
       <div className="flex gap-4">
