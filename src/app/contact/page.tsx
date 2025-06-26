@@ -95,7 +95,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       }
     }
 
-    // ✅ Optional: Submit to Convex
+    //  Submit to Convex
     await submitContactMessage({
       name,
       email,
@@ -107,7 +107,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       file: fileBase64
     });
 
-    // ✅ Submit to Formspree
+    // Submit to Formspree
     const response = await fetch("https://formspree.io/f/myzjbrvo", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -119,7 +119,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         domain,
         budget,
         projectDetails,
-        file: fileBase64, // ✅ fixed here
+        file: fileBase64,
       }),
     });
 
@@ -129,8 +129,6 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     toast.success("Message sent!");
     setSubmitted(true);
-
-    // Reset form fields
     setName("");
     setEmail("");
     setDelivery("");
@@ -178,7 +176,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               </Canvas>
             </div>
       
-            {/* Scrollable Main Content */}
+            {/* Main Content */}
             <main className="relative z-10 px-4 pt-24 pb-32 bg-black/30 backdrop-blur text-white min-h-screen">
 
       <motion.div
@@ -232,6 +230,8 @@ const handleSubmit = async (e: React.FormEvent) => {
       aria-hidden="true"
     />
 
+{/* Input Fields */}
+{/* name */}
             <div>
               <label className="block text-sm font-medium text-gradient mb-1">Your Name</label>
               <Input
@@ -243,6 +243,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               />
             </div>
 
+{/* Email */}
             <div>
               <label className="block text-sm font-medium text-gradient mb-1">Your Email</label>
               <Input
@@ -254,7 +255,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               />
             </div>
 
-
+{/* Preferred Delivery Time */}
             <div className="grid gap-4 sm:grid-cols-2">
   <div>
     <label className="block text-sm font-medium text-gradient mb-1">Preferred Delivery Time</label>
@@ -273,6 +274,9 @@ const handleSubmit = async (e: React.FormEvent) => {
     </select>
   </div>
 
+
+{/* Design Type */}
+
   <div>
     <label className="block text-sm font-medium text-gradient mb-1">Design Type</label>
     <select
@@ -288,6 +292,9 @@ const handleSubmit = async (e: React.FormEvent) => {
       <option value="svg_divider">SVG Page Divider</option>
     </select>
   </div>
+
+
+  {/* Product Domain */}
 
   <div>
     <label className="block text-sm font-medium text-gradient mb-1">Product Domain</label>
@@ -306,6 +313,8 @@ const handleSubmit = async (e: React.FormEvent) => {
     </select>
   </div>
 
+{/* Budget */}
+
   <div>
     <label className="block text-sm font-medium text-gradient mb-1">Budget (optional)</label>
     <Input
@@ -317,6 +326,8 @@ const handleSubmit = async (e: React.FormEvent) => {
   </div>
 </div>
 
+{/* File Upload */}
+
 <div className="pt-4">
   <label className="block text-sm font-medium text-gradient mb-1">Upload Design (JPG, PNG, PDF, SVG)</label>
   <Input
@@ -326,6 +337,8 @@ const handleSubmit = async (e: React.FormEvent) => {
     className="file:rounded-md file:border-0 file:bg-gradient-to-r file:from-purple-600 file:to-indigo-600 file:text-white file:px-4 file:py-2 file:cursor-pointer hover:file:bg-gradient-to-r hover:file:from-purple-500 hover:file:to-indigo-500"
   />
 </div>
+
+{/* Project Notes */}
 
 <div>
   <label className="block text-sm font-medium text-gradient mb-1"> Project Notes</label>
@@ -341,7 +354,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
 <Button
   type="submit"
-  disabled={loading} // disables the button while loading
+  disabled={loading}
   className={cn(
     `group relative inline-flex items-center justify-center
      px-10 py-3 rounded-full

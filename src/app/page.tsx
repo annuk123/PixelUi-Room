@@ -18,7 +18,7 @@ export default function Home() {
   };
 
   const handleEnterExplore = () => {
-    router.push('/explore'); // ⬅️ navigate to explore route directly
+    router.push('/explore'); 
   };
 
   return (

@@ -6,10 +6,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export interface Feedback {
-  _id?: string; // Optional unique identifier
+  _id?: string; // unique identifier
   name: string;
   message: string;
-  rating: number; // Rating from 1 to 5
+  rating: number; 
   createdAt: string; // or Date
 }
 

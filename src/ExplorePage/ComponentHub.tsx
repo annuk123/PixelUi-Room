@@ -5,15 +5,12 @@ import ButtonShowcase from "@/components/UIRoomScene/sections/ButtonShowcase";
 import InputShowcase from "@/components/UIRoomScene/sections/InputShowcase";
 import SwitchShowcase from "@/components/UIRoomScene/sections/SwitchShowcase";
 import TabsShowcase from "@/components/UIRoomScene/sections/TabsShowcase";
-// Add more showcase components as you build them
 
 const componentTabs = [
   "Buttons",
   "Inputs",
   "Switches",
   "Tabs",
-  // "Forms",
-  // "Cards",
 ];
 
 const categories = [
@@ -84,7 +81,7 @@ export const ComponentHub = () => {
         {activeTab === "Tabs" && (
           <TabsShowcase selectedCategory={activeCategory} />
         )}
-        {/* Add more when ready */}
+        
       </div>
 
       {/* CTA */}

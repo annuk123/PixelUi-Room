@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { SvgCard } from './SectionCard'; // you can reuse and tweak this card
+import { SvgCard } from './SectionCard'; 
 import { svgAssets } from '@/components/SVGHub/svg-data';
 
 const svgCategories = ['All', 'Waves', 'Blobs', 'Dividers', 'Doodles', 'Background'];
