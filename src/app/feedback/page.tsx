@@ -11,8 +11,6 @@ import { motion } from "framer-motion";
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import RandomParticles from '@/components/HeroSection/RandomParticles/RandomParticles';
-
-// Import canvas-confetti for confetti animation
 import confetti from "canvas-confetti";
 
 export default function FeedbackPage() {
