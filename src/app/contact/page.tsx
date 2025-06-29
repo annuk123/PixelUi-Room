@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import RandomParticles from '@/components/HeroSection/RandomParticles/RandomParticles';
+
 import {
   FaGithub,
   FaLinkedin,
@@ -32,8 +33,9 @@ export default function ContactPage() {
 const [designType, setDesignType] = useState("");
 const [domain, setDomain] = useState("");
 const [budget, setBudget] = useState("");
-const [file, setFile] = useState<File | null>(null);
+// const [file, setFile] = useState<File | null>(null);
 const [projectDetails, setProjectDetails] = useState("");
+const [designLink, setDesignLink] = useState(""); // New state for design link
 
 
   const socials = [
@@ -68,7 +70,6 @@ const [projectDetails, setProjectDetails] = useState("");
       href: "https://www.youtube.com/channel/UC3wYJlVEy9cMi5e_sZG-Q7Q",
     },
   ];
-
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
@@ -79,23 +80,23 @@ const handleSubmit = async (e: React.FormEvent) => {
     return;
   }
 
+   if (delivery === "1_hour" && designType === "landing_page") {
+    if (!budget) {
+      toast.error("Please enter a budget for 1 Hour Landing Page requests.");
+      return;
+    }
+    const budgetValue = parseFloat(budget.replace(/[^0-9.]/g, ""));
+    if (isNaN(budgetValue) || budgetValue < 10) {
+      toast.error("Budget must be at least $10 for this request.");
+      return;
+    }
+  }
+
+
   setLoading(true);
 
   try {
-    let fileBase64: string | undefined = undefined;
-
-    if (file) {
-      try {
-        fileBase64 = await convertFileToBase64(file);
-      } catch (err) {
-        console.error("File conversion failed:", err);
-        toast.error("Failed to upload file. Please try again.");
-        setLoading(false);
-        return;
-      }
-    }
-
-    //  Submit to Convex
+    // ✅ Save to Convex
     await submitContactMessage({
       name,
       email,
@@ -104,31 +105,36 @@ const handleSubmit = async (e: React.FormEvent) => {
       domain,
       budget,
       projectDetails,
-      file: fileBase64
+      file: designLink, // Reuse the `file` field to store the design link
     });
 
-    // Submit to Formspree
+    // ✅ Send to Formspree
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("delivery", delivery);
+    formData.append("designType", designType);
+    formData.append("domain", domain);
+    formData.append("budget", budget);
+
+    // Add project details + design link
+    const combinedDetails = `${projectDetails}\n\nDesign Link: ${designLink}`;
+    formData.append("projectDetails", combinedDetails);
+
     const response = await fetch("https://formspree.io/f/myzjbrvo", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-        delivery,
-        designType,
-        domain,
-        budget,
-        projectDetails,
-        file: fileBase64,
-      }),
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
     });
 
-    if (!response.ok) {
-      throw new Error("Formspree submission failed");
-    }
+    if (!response.ok) throw new Error("Formspree submission failed");
 
     toast.success("Message sent!");
     setSubmitted(true);
+
+    // ✅ Reset fields
     setName("");
     setEmail("");
     setDelivery("");
@@ -136,7 +142,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     setDomain("");
     setBudget("");
     setProjectDetails("");
-    setFile(null);
+    setDesignLink(""); // reset design link field too
   } catch (err) {
     console.error("Submission error:", err);
     toast.error("Something went wrong. Please try again.");
@@ -146,21 +152,9 @@ const handleSubmit = async (e: React.FormEvent) => {
 };
 
 
-
-  function cn(...classes: (string | boolean | undefined | null)[]): string {
+  function cn(...classes: (string | false | null | undefined)[]): string {
     return classes.filter(Boolean).join(" ");
   }
-
-  async function convertFileToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
-}
-
-
   return (
     <div className="relative w-full min-h-screen overflow-x-hidden bg animated-gradient-bg">
 
@@ -210,11 +204,17 @@ const handleSubmit = async (e: React.FormEvent) => {
         setDomain("");
         setBudget("");
         setProjectDetails("");
-        setFile(null);
+        setDesignLink(""); // reset design link field too
       }}
       className="mt-2"
     >
       Send Another Message
+    </Button>
+    <Button
+      onClick={() => window.location.href = "/explore"}
+      className="mt-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700"
+    >
+      Go back
     </Button>
   </motion.div>
 ) : (
@@ -276,7 +276,6 @@ const handleSubmit = async (e: React.FormEvent) => {
 
 
 {/* Design Type */}
-
   <div>
     <label className="block text-sm font-medium text-gradient mb-1">Design Type</label>
     <select
@@ -323,20 +322,36 @@ const handleSubmit = async (e: React.FormEvent) => {
       value={budget}
       onChange={(e) => setBudget(e.target.value)}
     />
+    {delivery === "1_hour" && designType === "landing_page" && (
+  <p className="text-sm text-red-400 mt-1">
+    Minimum budget of $10 required for 1-hour landing page requests.
+  </p>
+)}
+
   </div>
 </div>
 
 {/* File Upload */}
 
 <div className="pt-4">
-  <label className="block text-sm font-medium text-gradient mb-1">Upload Design (JPG, PNG, PDF, SVG)</label>
+  <label className="block text-sm font-medium mb-1 text-white">
+    Upload Design Link
+  </label>
+<div>
   <Input
-    type="file"
-    accept=".jpg,.jpeg,.png,.pdf,.svg"
-    onChange={(e) => setFile(e.target.files?.[0] || null)}
-    className="file:rounded-md file:border-0 file:bg-gradient-to-r file:from-purple-600 file:to-indigo-600 file:text-white file:px-4 file:py-2 file:cursor-pointer hover:file:bg-gradient-to-r hover:file:from-purple-500 hover:file:to-indigo-500"
+    type="text"
+    placeholder="Paste your design link here"
+    value={designLink}
+    onChange={(e) => setDesignLink(e.target.value)}
   />
+
 </div>
+  <p className="text-xs text-gray-500 mt-1">
+    If you have a design file, please upload it to a file hosting service and paste the link here.
+  </p>
+</div>
+
+
 
 {/* Project Notes */}
 
@@ -401,11 +416,16 @@ const handleSubmit = async (e: React.FormEvent) => {
         strokeWidth="2"
         viewBox="0 0 24 24"
       >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M14 5l7 7m0 0l-7 7m7-7H3"
+        />
       </svg>
     </span>
   )}
 </Button>
+
 
 
           </form>
@@ -439,3 +459,4 @@ const handleSubmit = async (e: React.FormEvent) => {
     </div>
   );
 }
+

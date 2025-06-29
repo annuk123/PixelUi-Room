@@ -1,64 +1,61 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Suspense, useMemo, useRef } from 'react';
+import * as THREE from 'three';
 
-export default function PixelParticles() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const PARTICLE_COUNT = 200;
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+function ParticleField() {
+  const meshRef = useRef<THREE.InstancedMesh>(null!);
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    // Pixel particles config
-    const particles = Array.from({ length: 150 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: Math.floor(Math.random() * 4) + 1,
-      dx: (Math.random() - 0.5) * 0.5,
-      dy: (Math.random() - 0.5) * 0.5,
-      color: `hsl(${Math.random() * 360}, 100%, 70%)`,
-    }));
-
-    function animate() {
-      ctx!.clearRect(0, 0, width, height);
-
-      particles.forEach(p => {
-        p.x += p.dx;
-        p.y += p.dy;
-
-        // Bounce off edges
-        if (p.x < 0 || p.x > width) p.dx *= -1;
-        if (p.y < 0 || p.y > height) p.dy *= -1;
-
-        ctx!.fillStyle = p.color;
-        ctx!.fillRect(p.x, p.y, p.size, p.size); // pixel block
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    // Handle resize
-    const handleResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
+  const { positions, speeds } = useMemo(() => {
+    const positions = Array.from({ length: PARTICLE_COUNT }, () => [
+      (Math.random() - 0.5) * 100,
+      (Math.random() - 0.5) * 100,
+      Math.random() * 100,
+    ]);
+    const speeds = Array.from({ length: PARTICLE_COUNT }, () => Math.random() * 0.5 + 0.2);
+    return { positions, speeds };
   }, []);
 
+  useFrame(() => {
+    const mesh = meshRef.current;
+    const temp = new THREE.Object3D();
+
+    positions.forEach((pos, i) => {
+      pos[2] -= speeds[i];
+      if (pos[2] < 0) {
+        pos[0] = (Math.random() - 0.5) * 100;
+        pos[1] = (Math.random() - 0.5) * 100;
+        pos[2] = 100;
+      }
+
+      temp.position.set(pos[0], pos[1], pos[2]);
+      temp.scale.setScalar(0.5);
+      temp.updateMatrix();
+      mesh.setMatrixAt(i, temp.matrix);
+    });
+
+    mesh.instanceMatrix.needsUpdate = true;
+  });
+
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full -z-10 opacity-40 pointer-events-none"
-    />
+    <instancedMesh ref={meshRef} args={[undefined, undefined, PARTICLE_COUNT]}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial color="hsl(200, 100%, 70%)" />
+    </instancedMesh>
+  );
+}
+
+export default function PixelParticles() {
+  return (
+    <div className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none">
+      <Canvas camera={{ position: [0, 0, 20], fov: 75 }}>
+        <Suspense fallback={null}>
+          <ParticleField />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }

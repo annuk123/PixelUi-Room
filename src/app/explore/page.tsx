@@ -42,8 +42,9 @@ export default function ExplorePage() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-cyan-300 drop-shadow">
-            Welcome to PixelUI Room ✨
+          <h1 className="text-white text-4xl md:text-6xl font-extrabold tracking-tight">
+            Pixel<span className="text-blue-500">UI</span> Roo
+            <span className="text-blue-500">m</span> 
           </h1>
           <p className="text-gray-200 mt-4 max-w-xl mx-auto">
             Explore beautifully crafted UI components, landing pages, icons, and SVG section dividers.

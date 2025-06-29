@@ -18,6 +18,7 @@ export default function ComponentPage() {
         >
           <Suspense fallback={null}>
             <RandomParticles />
+            {/* <PixelParticles /> */}
           </Suspense>
         </Canvas>
       </div>
