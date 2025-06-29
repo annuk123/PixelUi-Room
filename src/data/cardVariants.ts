@@ -159,7 +159,7 @@ export default function BlockchainSignInCard() {
 
         {
     label: "Business Card",
-    category: "blockchain",
+    category: "business",
     Component: BusinessSignInCard,
     code: `"use client";
 import { Button } from "@/components/ui/button";
