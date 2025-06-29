@@ -26,7 +26,7 @@ export default function ClassicSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-[#6d5c4d]">
-        Don't have an account? <span className="underline hover:text-[#5a4334]">Register here</span>
+        Don&apos;t have an account? <span className="underline hover:text-[#5a4334]">Register here</span>
       </p>
     </div>
   );

@@ -24,7 +24,7 @@ export default function SaaSSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-white/80">
-        Don't have an account? <span className="underline hover:text-white">Get Started</span>
+        Don&apos;t have an account? <span className="underline hover:text-white">Get Started</span>
       </p>
     </div>
   );
