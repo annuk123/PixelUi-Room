@@ -9,6 +9,8 @@ import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import FeedbackSection from '@/components/FeedBackComponenet/Feedback';
 
+
+
 const sections = [
   { href: '/explore/uicomponents', title: 'UI Components', description: 'Buttons, Inputs, Tabs, Cards...' },
   { href: '/explore/landingpage', title: 'Landing Pages', description: 'Fully designed responsive pages' },
@@ -100,6 +102,15 @@ export default function ExplorePage() {
     }))
   }
 />
+
+
+
+
+        {/* Footer */}
+        <footer className="mt-16 text-center text-gray-400 text-sm">
+          © {new Date().getFullYear()} PixelUI Room. All rights reserved.
+        </footer>
+
       </main>
     </div>
   );
