@@ -51,16 +51,6 @@ export default function SvgPreviewCard({ svgData }: { svgData: any }) {
         </button>
       )}
       </div>
-{/* 
-      {showDownload && (
-        <button
-          onClick={() => downloadAsSVG(svgData.svg, svgData.label)}
-          className="absolute top-3 right-3 text-white hover:text-cyan-400 transition"
-          title="Download SVG"
-        >
-          <Download size={18} />
-        </button>
-      )} */}
     </div>
   );
 }
