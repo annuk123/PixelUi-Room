@@ -15,6 +15,7 @@ import type {
 } from "convex/server";
 import type * as contact from "../contact.js";
 import type * as feedback from "../feedback.js";
+import type * as newsletter from "../newsletter.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -27,6 +28,7 @@ import type * as feedback from "../feedback.js";
 declare const fullApi: ApiFromModules<{
   contact: typeof contact;
   feedback: typeof feedback;
+  newsletter: typeof newsletter;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

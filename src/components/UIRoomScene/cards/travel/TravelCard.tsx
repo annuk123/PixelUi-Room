@@ -24,11 +24,14 @@ export default function TravelSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-cyan-100">
-        New to Travelly? <a className="underline hover:text-white" href="#">Create Account</a>
+        New to Travelly? <span className="underline hover:text-white">Create Account</span>
       </p>
     </div>
   );
 }
 
+//change span with <Link> or <a> while editing
+
 // Dependencies: shadcn/ui (Button)
-// Run: npx cmdease install @radix-ui/react-icons class-variance-authority tailwind-variants
+// Run: npx shadcn add button
+// or Run npx install -g cmdease for installing any dependency

@@ -24,10 +24,14 @@ export default function CyberSecuritySignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-xs text-green-500">
-        No credentials? <a className="underline hover:text-green-300" href="#">Request Access</a>
+        No credentials? <span className="underline hover:text-green-300" >Request Access</span>
       </p>
     </div>
   );
 }
 
+//change span with <Link> or <a> while editing
+
 // Dependencies: shadcn/ui (Button)
+// Run: npx shadcn add button
+// or Run npx install -g cmdease for installing any dependency

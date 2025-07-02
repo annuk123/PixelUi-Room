@@ -20,8 +20,15 @@ export default defineSchema({
   domain: v.optional(v.string()),
   budget: v.optional(v.string()),
   projectDetails: v.optional(v.string()),
-  file: v.optional(v.string()), // base64
-}).index("by_createdAt", ["createdAt"])
+  file: v.optional(v.string()), 
+}).index("by_createdAt", ["createdAt"]),
+
+
+  newsletter: defineTable({
+    email: v.string(),
+    subscribedAt: v.number(),
+  }).index('email', ['email']),
+
 
 
 

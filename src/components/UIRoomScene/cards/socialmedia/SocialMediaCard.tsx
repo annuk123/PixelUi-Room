@@ -24,11 +24,14 @@ export default function SocialMediaSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-violet-200">
-        Don’t have an account? <a className="underline hover:text-white" href="#">Join Now</a>
+        Don’t have an account? <span className="underline hover:text-white" >Join Now</span>
       </p>
     </div>
   );
 }
 
+//change span with <Link> or <a> while editing
+
 // Dependencies: shadcn/ui (Button)
-// Run: npx cmdease install @radix-ui/react-icons class-variance-authority tailwind-variants
+// Run: npx shadcn add button
+// or Run npx install -g cmdease for installing any dependency

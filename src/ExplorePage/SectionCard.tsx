@@ -32,38 +32,38 @@ export function SectionCard({ title, image, liveUrl, codeUrl, category }: Sectio
 }
 
 
-type SvgCardProps = {
-  title: string;
-  preview: string;
-  svgCode: string;
-  category: string;
-};
+// type SvgCardProps = {
+//   title: string;
+//   preview: string;
+//   svgCode: string;
+//   category: string;
+// };
 
-export function SvgCard({ title, preview, svgCode, category }: SvgCardProps) {
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(svgCode);
-  };
+// export function SvgCard({ title, preview, svgCode, category }: SvgCardProps) {
+//   const handleCopy = async () => {
+//     await navigator.clipboard.writeText(svgCode);
+//   };
 
-  return (
-    <div className="bg-[#141436] border border-cyan-700/50 rounded-xl overflow-hidden shadow-md p-4 space-y-3">
-      <Image src={preview} width={50} height={50} alt={title} className="w-full h-48 object-contain bg-white rounded" />
-      <h3 className="text-lg font-semibold text-white">{title}</h3>
-      <p className="text-xs text-cyan-400">{category}</p>
-      <div className="flex gap-4">
-        <button
-          onClick={handleCopy}
-          className="text-sm px-4 py-1 rounded bg-cyan-600 hover:bg-cyan-500 text-black"
-        >
-          Copy SVG
-        </button>
-        <a
-          href={preview}
-          download
-          className="text-sm px-4 py-1 rounded border border-cyan-400 text-cyan-300 hover:bg-cyan-700/20"
-        >
-          Download
-        </a>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div className="bg-[#141436] border border-cyan-700/50 rounded-xl overflow-hidden shadow-md p-4 space-y-3">
+//       <Image src={preview} width={50} height={50} alt={title} className="w-full h-48 object-contain bg-white rounded" />
+//       <h3 className="text-lg font-semibold text-white">{title}</h3>
+//       <p className="text-xs text-cyan-400">{category}</p>
+//       <div className="flex gap-4">
+//         <button
+//           onClick={handleCopy}
+//           className="text-sm px-4 py-1 rounded bg-cyan-600 hover:bg-cyan-500 text-black"
+//         >
+//           Copy SVG
+//         </button>
+//         <a
+//           href={preview}
+//           download
+//           className="text-sm px-4 py-1 rounded border border-cyan-400 text-cyan-300 hover:bg-cyan-700/20"
+//         >
+//           Download
+//         </a>
+//       </div>
+//     </div>
+//   );
+// }

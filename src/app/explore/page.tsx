@@ -8,6 +8,8 @@ import RandomParticles from '@/components/HeroSection/RandomParticles/RandomPart
 import { useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import FeedbackSection from '@/components/FeedBackComponenet/Feedback';
+import WhyChooseShadcn from '@/components/WhyChooseUs/whychooseus';
+import NewsletterSubscribe from '@/components/NewsLetter/NewsLetter';
 
 
 
@@ -92,6 +94,12 @@ export default function ExplorePage() {
           </Link>
         </div>
 
+        {/* Why Choose Us Section */}
+        <section className="mt-16 text-center">
+
+        <WhyChooseShadcn />
+        </section>
+
         {/* Feedback */}
 
         <FeedbackSection
@@ -101,9 +109,11 @@ export default function ExplorePage() {
       createdAt: String(fb.createdAt),
     }))
   }
+
 />
 
-
+        {/* Newsletter Subscribe Section */}
+          <NewsletterSubscribe />
 
 
         {/* Footer */}

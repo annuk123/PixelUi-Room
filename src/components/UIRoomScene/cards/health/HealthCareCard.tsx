@@ -24,7 +24,7 @@ export default function HealthCareSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-emerald-600">
-        New patient? <a className="text-emerald-700 underline hover:text-emerald-600" href="#">Register</a>
+        New patient? <span className="text-emerald-700 underline hover:text-emerald-600" >Register</span>
       </p>
     </div>
   );

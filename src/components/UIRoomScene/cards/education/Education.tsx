@@ -24,7 +24,7 @@ export default function EducationSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-gray-600">
-        New here? <a className="text-indigo-700 underline hover:text-indigo-600" href="#">Create an Account</a>
+        New here? <span className="text-indigo-700 underline hover:text-indigo-600" >Create an Account</span>
       </p>
     </div>
   );

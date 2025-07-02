@@ -16,33 +16,51 @@ export const cardVariants = [
     label: "Gradient Card",
     category: "enterprise",
     Component: FancyTabCard1,
-    code: `// Dependencies: shadcn/ui, framer-motion
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
+    code: `"use client";
+import { Button } from "@/components/ui/button";
 
-export default function GradientTabs() {
+export default function SaaSSignInCard() {
   return (
-    <Tabs defaultValue="tab1">
-      <TabsList className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md">
-        <TabsTrigger value="tab1">Overview</TabsTrigger>
-        <TabsTrigger value="tab2">Details</TabsTrigger>
-      </TabsList>
-      <TabsContent value="tab1">Welcome to the Gradient Tabs!</TabsContent>
-      <TabsContent value="tab2">More info here.</TabsContent>
-    </Tabs>
+    <div className="max-w-sm mx-auto bg-gradient-to-br from-cyan-500 to-blue-600 text-white shadow-xl rounded-xl p-8">
+      <h2 className="text-2xl font-bold mb-2 text-white text-center">Welcome Back 👋</h2>
+      <p className="text-sm text-white/90 text-center mb-6">Sign in to your SaaS Dashboard</p>
+
+      <input
+        type="email"
+        placeholder="you@example.com"
+        className="w-full mb-4 px-4 py-2 rounded-md text-black placeholder:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white border border-gray-200"
+      />
+
+      <input
+        type="password"
+        placeholder="••••••••"
+        className="w-full mb-6 px-4 py-2 rounded-md text-black placeholder:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white border border-gray-200"
+      />
+
+      <Button className="w-full bg-white text-cyan-700 font-semibold hover:bg-white/90 transition rounded-md shadow">
+        Sign In
+      </Button>
+
+      <p className="mt-4 text-center text-sm text-white/80">
+        Don&apos;t have an account? <span className="underline hover:text-white">Get Started</span>
+      </p>
+    </div>
   );
 }
 
- // Run: npx shadcn add button
+//change span with <Link> or <a> while editing
+
+// Dependencies: shadcn/ui (Button)
+// Run: npx shadcn add button
 // or Run npx install -g cmdease for installing any dependency
+
 `,
   },
   {
     label: "Retro Card",
     category: "gaming",
     Component: RetroTabCard,
-    code: `// Dependencies: none (pure Tailwind)
-"use client";
+    code: `"use client";
 
 export default function RetroCard() {
   return (
@@ -63,13 +81,15 @@ export default function RetroCard() {
          Enter Game
       </button>
       <p className="mt-4 text-xs text-pink-300 text-center">
-        New player? <p className="underline hover:text-pink-100" >Create an account</p>
+        New player? <span className="underline hover:text-pink-100">Create an account</span>
       </p>
     </div>
   );
 }
 
+// Dependencies: none (pure Tailwind CSS)
 // Run: No external dependencies required
+
 `,
   },
 
@@ -103,15 +123,18 @@ export default function CyberSecuritySignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-xs text-green-500">
-        No credentials? <a className="underline hover:text-green-300" href="#">Request Access</a>
+        No credentials? <span className="underline hover:text-green-300" >Request Access</span>
       </p>
     </div>
   );
 }
 
+//change span with <Link> or <a> while editing
+
 // Dependencies: shadcn/ui (Button)
 // Run: npx shadcn add button
 // or Run npx install -g cmdease for installing any dependency
+
 `,
   },
 
@@ -125,7 +148,7 @@ import { Button } from "@/components/ui/button";
 export default function BlockchainSignInCard() {
   return (
     <div className="max-w-sm mx-auto bg-[#0a0a23] text-cyan-200 border border-cyan-500/20 backdrop-blur-lg shadow-lg rounded-xl p-6">
-      <h2 className="text-2xl font-semibold mb-2 text-cyan-400 text-center">🔗 Connect to Chain</h2>
+      <h2 className="text-2xl font-semibold mb-2 text-cyan-400 text-center"> Connect to Chain</h2>
       <p className="text-sm text-cyan-300 text-center mb-6">Access your decentralized dashboard</p>
 
       <input
@@ -151,9 +174,12 @@ export default function BlockchainSignInCard() {
   );
 }
 
+//change span with <Link> or <a> while editing
+
 // Dependencies: shadcn/ui (Button)
 // Run: npx shadcn add button
 // or Run npx install -g cmdease for installing any dependency
+
 `,
   },
 
@@ -194,6 +220,7 @@ export default function BusinessSignInCard() {
 }
 
 //change span with <Link> or <a> while editing
+
 // Dependencies: shadcn/ui (Button)
 // Run: npx shadcn add button
 // or Run npx install -g cmdease for installing any dependency
@@ -233,7 +260,7 @@ export default function ClassicSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-[#6d5c4d]">
-        Don't have an account? <a className="underline hover:text-[#5a4334]" href="#">Register here</a>
+        Don&apos;t have an account? <span className="underline hover:text-[#5a4334]">Register here</span>
       </p>
     </div>
   );
@@ -278,7 +305,7 @@ export default function FinanceSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-gray-600">
-        New to FinanceCorp? <a className="text-blue-700 underline hover:text-blue-600" href="#">Sign Up</a>
+        New to FinanceCorp? <span className="text-blue-700 underline hover:text-blue-600">Sign Up</span>
       </p>
     </div>
   );
@@ -321,7 +348,7 @@ export default function EcommerceSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-gray-600">
-        Don’t have an account? <a className="text-pink-600 underline hover:text-pink-500" href="#">Sign Up</a>
+        Don’t have an account? <span className="text-pink-600 underline hover:text-pink-500" >Sign Up</span>
       </p>
     </div>
   );
@@ -366,7 +393,7 @@ export default function EducationSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-gray-600">
-        New here? <a className="text-indigo-700 underline hover:text-indigo-600" href="#">Create an Account</a>
+        New here? <span className="text-indigo-700 underline hover:text-indigo-600" >Create an Account</span>
       </p>
     </div>
   );
@@ -377,6 +404,7 @@ export default function EducationSignInCard() {
 // Dependencies: shadcn/ui (Button)
 // Run: npx shadcn add button
 // or Run npx install -g cmdease for installing any dependency
+
 
 `,
   },
@@ -410,7 +438,7 @@ export default function HealthCareSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-emerald-600">
-        New patient? <a className="text-emerald-700 underline hover:text-emerald-600" href="#">Register</a>
+        New patient? <span className="text-emerald-700 underline hover:text-emerald-600" >Register</span>
       </p>
     </div>
   );
@@ -454,12 +482,11 @@ export default function SocialMediaSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-violet-200">
-        Don’t have an account? <a className="underline hover:text-white" href="#">Join Now</a>
+        Don’t have an account? <span className="underline hover:text-white" >Join Now</span>
       </p>
     </div>
   );
 }
-
 
 //change span with <Link> or <a> while editing
 
@@ -505,6 +532,13 @@ export default function TravelSignInCard() {
     </div>
   );
 }
+
+//change span with <Link> or <a> while editing
+
+// Dependencies: shadcn/ui (Button)
+// Run: npx shadcn add button
+// or Run npx install -g cmdease for installing any dependency
+
 `,
   },
 ];

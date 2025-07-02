@@ -24,7 +24,7 @@ export default function EcommerceSignInCard() {
       </Button>
 
       <p className="mt-4 text-center text-sm text-gray-600">
-        Don’t have an account? <a className="text-pink-600 underline hover:text-pink-500" href="#">Sign Up</a>
+        Don’t have an account? <span className="text-pink-600 underline hover:text-pink-500" >Sign Up</span>
       </p>
     </div>
   );

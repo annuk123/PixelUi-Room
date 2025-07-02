@@ -30,6 +30,8 @@ export default function SaaSSignInCard() {
   );
 }
 
+//change span with <Link> or <a> while editing
+
 // Dependencies: shadcn/ui (Button)
 // Run: npx shadcn add button
 // or Run npx install -g cmdease for installing any dependency
