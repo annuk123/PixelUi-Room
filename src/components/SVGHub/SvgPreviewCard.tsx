@@ -4,7 +4,12 @@ import { Copy, Download } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-export default function SvgPreviewCard({ svgData }: { svgData: any }) {
+type SvgData = {
+  svg: string;
+  label: string;
+};
+
+export default function SvgPreviewCard({ svgData }: { svgData: SvgData }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {

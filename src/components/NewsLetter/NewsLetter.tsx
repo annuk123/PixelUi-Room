@@ -4,7 +4,8 @@ import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { api } from 'convex/_generated/api';
+import { api } from "../../../convex/_generated/api";
+
 import { useMutation } from 'convex/react';
 
 export default function NewsletterSubscribe() {
@@ -15,17 +16,22 @@ export default function NewsletterSubscribe() {
 
   const subscribe = useMutation(api.newsletter.subscribe);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!email) return;
 
-    try {
-      await subscribe({ email });
-      setSubmitted(true);
-    } catch (err: any) {
+  try {
+    await subscribe({ email });
+    setSubmitted(true);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
       alert(err.message);
+    } else {
+      alert("An unknown error occurred");
     }
-  };
+  }
+};
+
 
   return (
     <motion.section
