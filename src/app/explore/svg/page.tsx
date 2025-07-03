@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import SvgPreviewCard from "@/components/SVGHub/SvgPreviewCard";
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import RandomParticles from '@/components/HeroSection/RandomParticles/RandomParticles';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Link from "next/link";
 const svgDividers = [
   {
     id: "wave-top-1",
@@ -82,7 +84,7 @@ const svgDividers = [
     tags: ["zigzag", "divider", "purple"],
   },
   {
-    label: "Mountains-1",
+    label: "Mountains-2",
     svg: `<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="#14b8a6" d="M0,192L80,170.7C160,149,320,107,480,117.3C640,128,800,192,960,213.3C1120,235,1280,213,1360,202.7L1440,192L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>`,
     tags: ["mountains", "divider", "green"],
   },
@@ -125,12 +127,21 @@ const svgDividers = [
 ];
 
 export default function SvgPageDividers() {
+const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0px", "-80px"]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
+
+
   const [filter, setFilter] = useState("all");
 
   const filtered =
     filter === "all"
       ? svgDividers
       : svgDividers.filter((div) => div.tags.includes(filter));
+
+      
 
   return (
 
@@ -149,12 +160,13 @@ export default function SvgPageDividers() {
             
                   {/* Scrollable Main Content */}
                   <main className="relative z-10 px-4 pt-24 pb-32 bg-black/30 backdrop-blur text-white min-h-screen">
-<section className="py-16 px-6 max-w-7xl mx-auto">
+                            <Link href="/explore" className="text-cyan-300 hover:underline mb-4 block">
+            &larr; Back to Explore
+          </Link>
+ <section ref={ref} className="py-16 px-6 max-w-7xl mx-auto">
       <motion.h1
         className="text-4xl font-bold text-cyan-400 text-center mb-6"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        style={{ y, opacity }}
       >
         SVG Page Dividers
       </motion.h1>
@@ -177,11 +189,26 @@ export default function SvgPageDividers() {
       </div>
 
       {/* Divider Preview Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((svg) => (
           <SvgPreviewCard key={svg.id} svgData={svg} />
-        ))}
-      </div>
+        ))} */}
+{filtered.map((svg, index) => (
+  <motion.div
+    key={svg.id || `svg-${index}`} // fallback to index if id is missing
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.05 }}
+    viewport={{ once: true, amount: 0.2 }}
+  >
+    <SvgPreviewCard svgData={svg} />
+  </motion.div>
+))}
+
+
+
+
+      {/* </div> */}
     </section>
     </main>
     </div>

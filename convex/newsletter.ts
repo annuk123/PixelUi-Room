@@ -12,12 +12,15 @@ export const subscribe = mutation({
       .unique();
 
     if (existing) {
-      throw new Error('Already subscribed');
+      // ❌ DO NOT throw
+      return { status: 'already' as const };
     }
 
     await ctx.db.insert('newsletter', {
       email: args.email,
       subscribedAt: Date.now(),
     });
+
+    return { status: 'success' as const };
   },
 });
