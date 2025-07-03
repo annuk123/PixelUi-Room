@@ -28,10 +28,10 @@ const handleSubmit = async (e: React.FormEvent) => {
     if (!res) {
       setMessage("Oops! Something went wrong. Try again?");
     } else if (res.status === 'already') {
-      setMessage("You've already joined the Pixel Pulse 🚀");
+      setMessage("You've already joined the PixelUi Room 🚀");
     } else if (res.status === 'success') {
       setSubmitted(true);
-      setMessage("Welcome aboard! You're officially a Pixel insider ✨");
+      setMessage("Welcome aboard! You're officially a PixelUi insider ✨");
 
       // Clear input & reset button after 3 seconds
       setTimeout(() => {
