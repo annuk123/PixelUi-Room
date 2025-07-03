@@ -12,6 +12,7 @@ import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import RandomParticles from '@/components/HeroSection/RandomParticles/RandomParticles';
 import confetti from "canvas-confetti";
+import Link from "next/link";
 
 export default function FeedbackPage() {
   const submitFeedback = useMutation(api.feedback.submitFeedback);
@@ -75,6 +76,10 @@ export default function FeedbackPage() {
               
                     {/* Scrollable Main Content */}
                     <main className="relative z-10 px-4 pt-24 pb-32 bg-black/30 backdrop-blur text-white min-h-screen">
+
+                     <Link href="/explore" className="text-cyan-300 hover:underline mb-4 block">
+            &larr; Back to Explore
+          </Link>
 
       <motion.div
         initial={{ opacity: 0, y: 60 }}

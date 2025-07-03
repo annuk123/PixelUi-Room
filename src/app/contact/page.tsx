@@ -20,6 +20,7 @@ import {
   FaAndroid,
   FaYoutube
 } from "react-icons/fa";
+import Link from "next/link";
 
 export default function ContactPage() {
   const submitContactMessage = useMutation(api.contact.submitContactMessage);
@@ -158,6 +159,8 @@ const handleSubmit = async (e: React.FormEvent) => {
   return (
     <div className="relative w-full min-h-screen overflow-x-hidden bg animated-gradient-bg">
 
+      
+
        {/* Background Canvas */}
             <div className="fixed inset-0 z-0 pointer-events-none">
               <Canvas
@@ -173,6 +176,9 @@ const handleSubmit = async (e: React.FormEvent) => {
             {/* Main Content */}
             <main className="relative z-10 px-4 pt-24 pb-32 bg-black/30 backdrop-blur text-white min-h-screen">
 
+<Link href="/explore" className="text-cyan-300 hover:underline mb-4 block">
+            &larr; Back to Explore
+          </Link>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
